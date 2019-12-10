@@ -12,6 +12,7 @@ How to use GRG Conversion tool
    :caption: Contents:
    
    grgConversionPlatform
+   runConversionExample
 
 Indices and tables
 ==================
