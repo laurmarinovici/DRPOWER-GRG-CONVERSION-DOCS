@@ -4,25 +4,13 @@ Building the GRG conversion platform
 Grid Research for Good - GRG - conversion tools can be found at:
 
   - Python tools for working with PSSE v33 data files
-  
-    - Location: `GRG_PSSE_data_structure_location`_
-      
-      .. _GRG_PSSE_data_structure_location: https://github.com/lanl-ansi/grg-pssedata
-    
+    - Location: `GRG_PSSE_data_structure_location`_   
     - Documentation: `GRG_PSSE_data_structure_docs`_
-
-      .. _GRG_PSSE_data_structure_docs: https://grg-pssedata.readthedocs.io/en/stable/
 
   - Python tools for working with GRG data files
-
     - Location: `GRG_PSSE_data_structure_location`_
-      
-      .. _GRG_PSSE_data_structure_location: https://github.com/lanl-ansi/grg-grgdata
-    
     - Documentation: `GRG_PSSE_data_structure_docs`_
-
-      .. _GRG_PSSE_data_structure_docs: https://grg-grgdata.readthedocs.io/en/stable/
-
+    
 Docker File
 ================
 
@@ -84,3 +72,8 @@ Docker File
 
   USER ${USER_NAME}
   WORKDIR ${WORK_DIR}
+
+.. _GRG_PSSE_data_structure_location: https://github.com/lanl-ansi/grg-pssedata
+.. _GRG_PSSE_data_structure_docs: https://grg-pssedata.readthedocs.io/en/stable/
+.. _GRG_PSSE_data_structure_location: https://github.com/lanl-ansi/grg-grgdata
+.. _GRG_PSSE_data_structure_docs: https://grg-grgdata.readthedocs.io/en/stable/
