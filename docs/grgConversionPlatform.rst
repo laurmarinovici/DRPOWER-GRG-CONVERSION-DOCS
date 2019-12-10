@@ -1,71 +1,86 @@
 Building the GRG conversion platform
-**********************************
-The building emulator is given as a Functional Mock-up Unit (FMU) and simulated using `JModelica`_. JModelica, as the tool to simulate and analyze the building emulator behavior, has been packaged on a Ubuntu 16.04.5 LTS machine in a Docker container. Hence, in order to download, access and run the JModelica-specialized container, Docker needs to be installed on the host machine.
+************************************
 
-.. _JModelica: https://jmodelica.org
+Grid Research for Good - GRG - conversion tools can be found at:
 
-Docker Container
+  - Python tools for working with PSSE v33 data files
+  
+    - Location: `GRG_PSSE_data_structure_location`_
+      
+      .. _GRG_PSSE_data_structure_location: https://github.com/lanl-ansi/grg-pssedata
+    
+    - Documentation: `GRG_PSSE_data_structure_docs`_
+
+      .. _GRG_PSSE_data_structure_docs: https://grg-pssedata.readthedocs.io/en/stable/
+
+  - Python tools for working with GRG data files
+
+    - Location: `GRG_PSSE_data_structure_location`_
+      
+      .. _GRG_PSSE_data_structure_location: https://github.com/lanl-ansi/grg-grgdata
+    
+    - Documentation: `GRG_PSSE_data_structure_docs`_
+
+      .. _GRG_PSSE_data_structure_docs: https://grg-grgdata.readthedocs.io/en/stable/
+
+Docker File
 ================
-For Windows 10 and Mac OS, there are specific versions of `Docker desktop`_, that is `Docker desktop for Windows`_, and `Docker desktop for Mac`_. On Ubuntu (Linux), installing Docker is less straight forward, and the procedure coudl follow the details below.
-
-.. _`Docker desktop`: https://www.docker.com/products/docker-desktop
-.. _`Docker desktop for Windows`: https://hub.docker.com/editions/community/docker-ce-desktop-windows
-.. _`Docker desktop for Mac`: https://hub.docker.com/editions/community/docker-ce-desktop-mac
-
-
-File `Script to install Docker CE on Ubuntu`_, which presents what the docker installation site shows at `Docker installation`_, can be used as helper to download and install Docker CE on Ubuntu.
-
-.. _Script to install Docker CE on Ubuntu: https://github.com/GRIDAPPSD/gridappsd-docker/blob/master/docker_install_ubuntu.sh
-.. _Docker installation: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
 .. code::
 
-  #!/bin/bash
+  ARG UBUNTU=ubuntu
+  ARG UBUNTU_VERSION=:18.04
 
-  # Environment variables you need to set so you don't have to edit the script below.
-  DOCKER_CHANNEL=stable
-  DOCKER_COMPOSE_VERSION=1.18.0
+  FROM ${UBUNTU}${UBUNTU_VERSION} AS ubuntu-base
 
-  # Update the apt package index.
-  sudo apt-get update
+  ENV USER_NAME=grg-user
+  ENV WORK_DIR=/home/${USER_NAME}
 
-  # Install packages to allow apt to use a repository over HTTPS.
-  sudo apt-get install -y \
-      apt-transport-https \
-      ca-certificates \
-      curl \
-      software-properties-common \
-      vim
+  # -------------------------------------------------------------------
+  # By default, the docker image is built as ROOT.
+  # Updating, upgrading the distribution, and installing everything
+  # that needs to be installed with ROOT privileges
+  # -------------------------------------------------------------------
+  RUN apt-get update && \
+      apt-get dist-upgrade -y && \
+      apt-get install -y \
+      sudo \
+      git \
+      nano \
+      python3 \
+      python3-dev \
+      python3-pip && \
+      rm -rf /var/lib/apt/lists/* && \
+      rm -rf /var/cache/apt/archives/* && \
+      ln -fs python3 /usr/bin/python && \
+      echo "===== PYTHON VERSION =====" && \
+      python --version && \
+      echo "===== PIP VERSION =====" && \
+      pip3 --version && \
+      echo "===== UPGRADE PIP =====" && \
+      pip3 install --upgrade pip && \
+      ln -fs /usr/local/bin/pip /usr/bin/pip && \
+      pip --version && \
+      pip list --format=columns && \
+      echo "===== installing NUMPY =====" && \
+      pip install --upgrade --ignore-installed numpy && \
+      echo "===== installing SCIPY =====" && \
+      pip install --upgrade --ignore-installed scipy && \
+      echo "===== installing PYTEST =====" && \
+      pip install --upgrade --ignore-installed pytest && \
+      echo "===== installing GRG PSSE data structure =====" && \
+      cd /tmp/ && git clone https://github.com/lanl-ansi/grg-pssedata.git && \
+      cd /tmp/grg-pssedata && python setup.py install && cd && rm -rf /tmp/grg-pssedata && \
+      echo "===== installing GRG GRG data structure =====" && \
+      cd /tmp/ && git clone https://github.com/lanl-ansi/grg-grgdata.git && \
+      cd /tmp/grg-grgdata && python setup.py install && cd && rm -rf /tmp/grg-grgdata && \
+      echo "===== installing GRG PSSE2GRG module =====" && \
+      cd /tmp/ && git clone https://github.com/lanl-ansi/grg-psse2grg.git && \
+      cd /tmp/grg-psse2grg && python setup.py install && cd && rm -rf /tmp/grg-psse2grg && \
+      echo "===== current PYTHON modules =====" && \
+      pip list --format=columns && \
+      echo "root:grg" | chpasswd && \
+      useradd -m -s /bin/bash ${USER_NAME}
 
-  # Add Docker's official GPG key.
-  curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
-
-  # Verify the fingerprint.
-  sudo apt-key fingerprint 0EBFCD88
-
-  # Pick the release channel.
-  sudo add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
-    $(lsb_release -cs) \
-    ${DOCKER_CHANNEL}"
-
-  # Update the apt package index.
-  sudo apt-get update
-
-  # Install the latest version of Docker CE.
-  sudo apt-get install -y docker-ce
-
-  # Allow your user to access the Docker CLI without needing root.
-  sudo /usr/sbin/usermod -aG docker $USER
-
-  # Install Docker Compose.
-  curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` -o /tmp/docker-compose
-  sudo mv /tmp/docker-compose /usr/local/bin/docker-compose
-  sudo chmod +x /usr/local/bin/docker-compose
-  sudo chown root:root /usr/local/bin/docker-compose
-
-The script also installs Docker Composer, used to define and run a multi-container Docker application. See `Compose overview`_.
-
-.. _Compose overview: https://docs.docker.com/compose/overview/
-
-**Warning.** To be able to run the Docker CLI without needing root, you need a reboot.
+  USER ${USER_NAME}
+  WORKDIR ${WORK_DIR}
