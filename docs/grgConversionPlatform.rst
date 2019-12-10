@@ -77,7 +77,7 @@ Docker File
   USER ${USER_NAME}
   WORKDIR ${WORK_DIR}
 
-.. _GRG PSSE data structure location: https://github.com/lanl-ansi/grg-pssedata
-.. _GRG PSSE data structure docs: https://grg-pssedata.readthedocs.io/en/stable/
-.. _GRG PSSE data structure location: https://github.com/lanl-ansi/grg-grgdata
-.. _GRG PSSE data structure docs: https://grg-grgdata.readthedocs.io/en/stable/
+.. _`GRG PSSE data structure location`: https://github.com/lanl-ansi/grg-pssedata
+.. _`GRG PSSE data structure docs`: https://grg-pssedata.readthedocs.io/en/stable/
+.. _`GRG PSSE data structure location`: https://github.com/lanl-ansi/grg-grgdata
+.. _`GRG PSSE data structure docs`: https://grg-grgdata.readthedocs.io/en/stable/
