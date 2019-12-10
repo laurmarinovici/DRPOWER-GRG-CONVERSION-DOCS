@@ -4,13 +4,17 @@ Building the GRG conversion platform
 Grid Research for Good - GRG - conversion tools can be found at:
 
   - Python tools for working with PSSE v33 data files
-    - Location: `GRG_PSSE_data_structure_location`_   
+
+    - Location: `GRG_PSSE_data_structure_location`_ 
+
     - Documentation: `GRG_PSSE_data_structure_docs`_
 
   - Python tools for working with GRG data files
+
     - Location: `GRG_PSSE_data_structure_location`_
-    - Documentation: `GRG_PSSE_data_structure_docs`_
     
+    - Documentation: `GRG_PSSE_data_structure_docs`_
+
 Docker File
 ================
 
