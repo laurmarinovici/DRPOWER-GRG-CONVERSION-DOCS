@@ -15,6 +15,14 @@ Grid Research for Good - GRG - conversion tools can be found at:
 
     - Documentation: `GRG data structure docs`_
 
+Requirements:
+
+  - Python 3.x
+
+  - Generic Python modules: numpy, scipy, pytest (not quite sure, but they don't hurt)
+
+  - Specific to the tool: grg-pssedata, grg-grgdata, grg-psse2grg. These could be installed from PyPi, but to make sure we keep up with LANL current developments, it is better to be installed from the GitHub repositories, as exemplified in the Dockerfile below.
+
 Docker File
 ================
 
