@@ -32,14 +32,14 @@ def main(argv):
     opts, args = getopt.getopt(argv, "hs:t:", ["help", "source=", "target="])
     if not opts:
       print("ERROR: need options and arguments to run.")
-      print("Usage: python mp2grg.py -s <source file to be translated (either .m or .json)> -t <target file to save the translated data (either .json or .m)>")
+      print("Usage: python psse2grg.py -s <source file to be translated (either .raw or .json)> -t <target file to save the translated data (either .json or .raw)>")
       sys.exit()
   except getopt.GetoptError:
-    print("Wrong option or no input argument! Usage: python mp2grg.py -s <source file to be translated (either .m or .json)> -t <target file to save the translated data (either .json or .m)>")
+    print("Wrong option or no input argument! Usage: python psse2grg.py -s <source file to be translated (either .raw or .json)> -t <target file to save the translated data (either .json or .raw)>")
     sys.exit(2)
   for opt, arg in opts:
     if  opt in ("-h", "--help"):
-      print("Help prompt. Usage: python mp2grg.py -s <source file to be translated (either .m or .json)> -t <target file to save the translated data (either .json or .m)>>")
+      print("Help prompt. Usage: python psse2grg.py -s <source file to be translated (either .raw or .json)> -t <target file to save the translated data (either .json or .raw)>>")
       sys.exit()
     # Set the source file for translation
     elif opt in ("-s", "--source"):
