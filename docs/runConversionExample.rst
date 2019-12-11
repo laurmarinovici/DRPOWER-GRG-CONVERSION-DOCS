@@ -34,6 +34,12 @@ The following arguments need to be given:
   -t [--target=]<path to target/output file>
     To provide a target file to save the new converted model to.
 
+**EXAMPLE**
+
+.. code::
+
+  python psse2grg.py -s ./PSSE-test-files/case24.raw -t ./case24_PSSE2GRG.json
+
 *psse2grg* script documentation
 ===============================
 
