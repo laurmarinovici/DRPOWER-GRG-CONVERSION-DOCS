@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../code'))
+sys.path.insert(0, os.path.abspath('../psse2grg'))
 print(sys.path)
 sys.setrecursionlimit(1500)
 
