@@ -3,7 +3,7 @@
 
 :Platform: Unix, Windows
 
-:Synopsis: This module acts as the main script to convert an input model in PSSE format (.raw) to GRG format (.json) or vice-versa.
+:Synopsis: This module converts an input model in PSSE format (.raw) to GRG format (.json) or vice-versa.
 
 :Module author: Laurentiu.Marinovici@pnnl.gov (Pacific Northwest National Laboratory)
 """
