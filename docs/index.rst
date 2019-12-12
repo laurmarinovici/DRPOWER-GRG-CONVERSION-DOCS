@@ -10,9 +10,13 @@ How to use GRG Conversion tool
 .. toctree::
    :maxdepth: 5
    :caption: Contents:
+   :numbered:
    
    grgConversionPlatform
    runConversionExample
+
+.. highlight:: python
+   :linenothreshold: 5
 
 Indices and tables
 ==================
