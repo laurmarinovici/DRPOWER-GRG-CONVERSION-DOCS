@@ -44,11 +44,7 @@ The following arguments need to be given:
 ===============================
 
 .. automodule:: psse2grg
-    :platform:
-    :synopsis:
     :members:
-    :no-undoc-members:
-    :show-inheritance:
 
 .. autofunction:: psse2grg.main
     :members:
