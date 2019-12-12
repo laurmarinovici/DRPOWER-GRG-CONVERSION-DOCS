@@ -46,9 +46,4 @@ The following arguments need to be given:
 .. automodule:: psse2grg
     :members:
 
-.. autofunction:: psse2grg.main
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 .. _`DRPOWER GRG CONVERSION`: https://stash.pnnl.gov/users/mari009/repos/drpower-grg-conversion/browse
