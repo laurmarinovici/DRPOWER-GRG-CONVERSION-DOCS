@@ -1,11 +1,11 @@
 """
-.. py:module:: psse2grg
+.. module:: psse2grg
 
-:platform: Unix, Windows
+:Platform: Unix, Windows
 
-:synopsis: This module acts as the main script to convert an input model in PSSE format (.raw) to GRG format (.json) or vice-versa.
+:Synopsis: This module acts as the main script to convert an input model in PSSE format (.raw) to GRG format (.json) or vice-versa.
 
-.. moduleauthor:: Laurentiu.Marinovici@pnnl.gov (Pacific Northwest National Laboratory)
+:Module author: Laurentiu.Marinovici@pnnl.gov (Pacific Northwest National Laboratory)
 """
 
 import os, sys, pytest, getopt, functools, json
