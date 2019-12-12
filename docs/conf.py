@@ -72,4 +72,4 @@ html_context = {
         ],
      }
 
-autodoc_mock_imports = ["flask", "flask_restful", "pyfmi", "numpy", "copy"]
+autodoc_mock_imports = ["flask", "flask_restful", "pyfmi", "numpy", "copy", "pytest"]
