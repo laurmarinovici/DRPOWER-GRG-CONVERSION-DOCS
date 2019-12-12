@@ -47,7 +47,7 @@ The following arguments need to be given:
     :platform:
     :synopsis:
     :members:
-    :undoc-members:
+    :no-undoc-members:
     :show-inheritance:
 
 .. autofunction:: psse2grg.main
